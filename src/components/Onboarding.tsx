@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -33,8 +33,18 @@ const steps = [
 export function Onboarding() {
   const [isOpen, setIsOpen] = useState(true)
   const [currentStep, setCurrentStep] = useState(0)
+  const [OnboardingCompleted, setOnboardingCompleted] = useState(false)
 
-  const yaruOnboardingCompleted = localStorage.getItem("yaruOnboardingCompleted")
+ 
+
+  useEffect(() => {
+    const yaruOnboardingCompleted = localStorage.getItem("yaruOnboardingCompleted")
+    if(yaruOnboardingCompleted === "true") {
+      setOnboardingCompleted(true)
+    }
+
+
+  }, [])
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
@@ -45,7 +55,7 @@ export function Onboarding() {
     }
   }
 
-  if (yaruOnboardingCompleted === "true") {
+  if (OnboardingCompleted) {
     return null
   }
 

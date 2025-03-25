@@ -29,26 +29,27 @@ const KanbanBoard = () => {
 ] as const
 
   useEffect(() => {
-    fetchBoardData();
+    const fetchBoardData = async () => {
+      try {
+        const response = await fetch('/api/board');
+        if (!response.ok) throw new Error('Failed to fetch board data');
+        const boardData = await response.json();
+        setData(boardData);
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to load board data. Please try again.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchBoardData()
   }, []);
 
-  const fetchBoardData = async () => {
-    try {
-      const response = await fetch('/api/board');
-      if (!response.ok) throw new Error('Failed to fetch board data');
-      const boardData = await response.json();
-      setData(boardData);
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to load board data. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+ 
   const updateBackend = async (updatedData: KanbanData) => {
     try {
       const response = await fetch('/api/board', {

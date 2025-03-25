@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import { Inter, Bricolage_Grotesque } from "next/font/google"
+import { Poppins, Manrope } from "next/font/google"
 import { Toaster } from "@/components/ui/toaster"
 import "./globals.css";
 
-const inter = Bricolage_Grotesque({ subsets: ["latin"] })
+const inter = Manrope({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Taskizen - Things to Do",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "Taskizen",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://taskizen.vercel.app/task-og-image.png",
         width: 1200,
         height: 630,
         alt: "Taskizen - Task Management App",
@@ -28,14 +28,28 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Taskizen - Things to Do",
     description: "A simple and effective task management app",
-    images: ["/og-image.jpg"],
+    images: ["https://taskizen.vercel.app/task-og-image.png"],
+    creator: '@stephen_olgade',
   },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: "/site.webmanifest",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  manifest: "https://taskizen.vercel.app/site.webmanifest",
 }
 
 

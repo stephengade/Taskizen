@@ -68,9 +68,11 @@ export default function Home() {
 
           <div className="space-x-4">
             <Link href="https://github.com/stephengade" target="_blank">
-              <img
+              <Image
                 src="https://avatars.githubusercontent.com/u/61961222?v=4"
                 alt="stephengade"
+                width={10}
+                height={10}
                 className="h-8 w-8 bg-cover rounded-[50%]"
               />
             </Link>
@@ -105,8 +107,8 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="mt-6 max-w-lg mx-auto text-center text-sm sm:text-base text-muted-foreground sm:max-w-3xl"
                 >
-                Transform your productivity with Taskizen's intuitive task management. 
-                Stay organized, focused, and accomplish more every day. It's 100% free and no sign-up required.
+                Transform your productivity with Taskizen&#39;s intuitive task management. 
+                Stay organized, focused, and accomplish more every day. It&#39;s 100% free and no sign-up required.
                 </motion.p>
 
               {/* Feature highlights */}
@@ -335,7 +337,7 @@ export default function Home() {
                 {
                   name: "Stephen Gbolagade",
                   role: "Software Developer",
-                  image: "/globe.svg",
+                  image: "https://avatars.githubusercontent.com/u/61961222?v=4",
                   quote:
                     "Taskizen has revolutionized the way I manage my team's tasks. The Kanban board is intuitive, and the analytics provide invaluable insights.",
                 },
@@ -359,8 +361,8 @@ export default function Home() {
                   variants={fadeIn}
                   className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-900/5"
                 >
-                  <blockquote className="text-gray-900">
-                    <p>{`"${testimonial.quote}"`}</p>
+                  <blockquote className="text-gray-900 italic">
+                    <p>{testimonial.quote}</p>
                   </blockquote>
                   <figcaption className="mt-6 flex items-center gap-x-4">
                     <Image
@@ -392,7 +394,7 @@ export default function Home() {
           className="bg-indigo-50"
         >
           <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-24 lg:px-24 lg:flex lg:items-end lg:justify-between">
-            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 md:text-4xl">
+            <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 md:text-3xl">
               <span className="block">Ready to boost your productivity?</span>
               <span className="block text-indigo-600">
                 Start using Taskizen today.
@@ -400,7 +402,7 @@ export default function Home() {
             </h2>
             <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
               <Link href="/dashboard">
-                <Button size="lg">It's free, start planning</Button>
+                <Button size="lg">It&#39;s free, start planning</Button>
               </Link>
             </div>
           </div>
