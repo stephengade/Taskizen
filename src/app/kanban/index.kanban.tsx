@@ -143,7 +143,7 @@ const KanbanBoard = () => {
         >
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold">{title}</h2>
-            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen} modal={true}>
               <DialogTrigger asChild>
                 <Button
                   variant="ghost"

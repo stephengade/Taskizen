@@ -13,8 +13,8 @@ import {
 
 const steps = [
   {
-    title: "Welcome to YaruKoto",
-    description: "YaruKoto helps you organize tasks and boost productivity. Let's get started!",
+    title: "Welcome to Taskizen",
+    description: "Taskizen helps you organize tasks and boost productivity. Let's get started!",
   },
   {
     title: "Kanban Board",
@@ -34,16 +34,18 @@ export function Onboarding() {
   const [isOpen, setIsOpen] = useState(true)
   const [currentStep, setCurrentStep] = useState(0)
 
+  const yaruOnboardingCompleted = localStorage.getItem("yaruOnboardingCompleted")
+
   const handleNext = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1)
     } else {
       setIsOpen(false)
-      localStorage.setItem("onboardingCompleted", "true")
+      localStorage.setItem("yaruOnboardingCompleted", "true")
     }
   }
 
-  if (localStorage.getItem("onboardingCompleted") === "true") {
+  if (yaruOnboardingCompleted === "true") {
     return null
   }
 

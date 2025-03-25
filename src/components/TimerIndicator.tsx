@@ -1,7 +1,8 @@
 import type React from "react"
 import type { Task } from "@/lib/store"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
+import { Clock } from "lucide-react"
 
 interface TimerIndicatorProps {
   activeTimer: string | null
@@ -13,9 +14,26 @@ interface TimerIndicatorProps {
 export const TimerIndicator: React.FC<TimerIndicatorProps> = ({ activeTimer, timeLeft, tasks, onStopTimer }) => {
   const formatTime = (seconds: number | null) => {
     if (seconds === null) return "00:00"
-    const mins = Math.floor(seconds / 60)
-    const secs = seconds % 60
-    return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
+    
+    // Handle negative values
+    const isNegative = seconds < 0
+    const absoluteSeconds = Math.abs(seconds)
+    
+    const hours = Math.floor(absoluteSeconds / 3600)
+    const mins = Math.floor((absoluteSeconds % 3600) / 60)
+    const secs = Math.floor(absoluteSeconds % 60)
+    
+    // Create the formatted time string
+    let timeString = ""
+    
+    if (hours > 0) {
+      timeString = `${hours.toString().padStart(2, "0")}:${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
+    } else {
+      timeString = `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`
+    }
+    
+    // Add negative sign if needed
+    return isNegative ? `-${timeString}` : timeString
   }
 
   if (!activeTimer || timeLeft === null) {
@@ -31,10 +49,17 @@ export const TimerIndicator: React.FC<TimerIndicatorProps> = ({ activeTimer, tim
   return (
     <Dialog open={true} onOpenChange={() => {}}>
       <DialogContent className="sm:max-w-[425px]" onPointerDownOutside={(e) => e.preventDefault()}>
+        <DialogTitle className="text-center"> {activeTask.title}</DialogTitle>
         <div className="flex flex-col items-center space-y-4">
-          <h2 className="text-2xl font-bold text-indigo-600">{activeTask.title}</h2>
-          <p className="text-4xl font-semibold">{formatTime(timeLeft)}</p>
-          <Button onClick={onStopTimer} variant="destructive">
+         
+          <div className="flex items-center">
+            <Clock className="mr-2 h-6 w-6 text-indigo-600" />
+            <p className="text-4xl font-semibold">{formatTime(timeLeft)}</p>
+          </div>
+          <div className="flex items-center text-sm text-gray-500">
+            <span>{activeTask.startTime} - {activeTask.endTime}</span>
+          </div>
+          <Button onClick={onStopTimer} variant="destructive" className="mt-4">
             Stop Timer
           </Button>
         </div>
@@ -42,4 +67,3 @@ export const TimerIndicator: React.FC<TimerIndicatorProps> = ({ activeTimer, tim
     </Dialog>
   )
 }
-
