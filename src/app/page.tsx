@@ -71,8 +71,8 @@ export default function Home() {
               <Image
                 src="https://avatars.githubusercontent.com/u/61961222?v=4"
                 alt="stephengade"
-                width={10}
-                height={10}
+                width={40}
+                height={40}
                 className="h-8 w-8 bg-cover rounded-[50%]"
               />
             </Link>

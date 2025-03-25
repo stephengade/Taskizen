@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
-import { Poppins, Manrope } from "next/font/google"
+import {  Manrope } from "next/font/google"
+import { Analytics } from "@vercel/analytics/react"
 import { Toaster } from "@/components/ui/toaster"
 import "./globals.css";
 
@@ -62,6 +63,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {children}
+        <Analytics />
         <Toaster />
       </body>
     </html>
